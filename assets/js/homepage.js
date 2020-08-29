@@ -4,6 +4,10 @@
 var userFormEl  = document.querySelector( "#user-form" );
 var nameInputEl = document.querySelector( "#username" );
 
+// Variables for the display container area of the page.
+var repoContainerEl = document.querySelector( "#repos-container" );
+var repoSearchTerm  = document.querySelector( "#repo-search-term" );
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 var getUserRepos = function ( user ) {
@@ -13,12 +17,74 @@ var getUserRepos = function ( user ) {
 
     // Make the request.
     var response = fetch(apiUrl).then(function (response) {
-        response.json().then(function (data) {
-            console.log(data);
-        })
+        if( response.ok ) {
+            response.json().then(function (data) {
+                displayRepos( data, user );
+            });
+        }
+        else {
+            alert( "Error: " + response.statusText );
+        }
 
     });
     console.log("outside");
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+// Define the function to the 'repo' information
+var displayRepos = function( repos, searchTerm ) {
+
+    // Check if the API returned any 'repos'
+    if( repos.length === 0 ) {
+        repoContainerEl.textContent = "No repositories found for this user." ;
+        return;
+    }
+
+    // Clear out any earlier displayed data
+    repoContainerEl.textContent = "";
+    repoSearchTerm.textContent  = searchTerm;
+
+    // Display the repository data on the page.
+    // Loop over the discovered 'repos'.
+    for( i = 0; i < repos.length; i++ ) {
+        // Format the 'repo' name
+        var repoName = repos[i].owner.login + "/" + repos[i].name;
+
+        // Create the container for this 'repo'.
+        var repoEl = document.createElement( "div" );
+        repoEl.classList = "list-item flex-row justify-space-between align-center";
+
+        // Create a span element to hold the 'repo' name
+        var titleEl = document.createElement( "span" );
+        titleEl.textContent = repoName;
+
+        // Append the element to the container
+        repoEl.appendChild( titleEl );
+
+        // Now create the status element for 'repo issues'
+        var statusEl = document.createElement( "span" );
+        statusEl.classList = "flex-row align-center";
+
+        // See if the repo has any issues
+        if( repos[i].open_issues_count > 0 ) {
+            statusEl.innerHTML = 
+            "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + " issue(s)";
+        }
+        else {
+            statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+        }
+
+        // Append the status to the container
+        repoEl.appendChild( statusEl );
+
+
+        // Append the container to the DOM
+        repoContainerEl.appendChild( repoEl );
+    }
+
+    console.log( repos );
+    console.log( searchTerm );
 }
 
 
