@@ -26,8 +26,11 @@ var getUserRepos = function ( user ) {
             alert( "Error: " + response.statusText );
         }
 
-    });
-    console.log("outside");
+    })
+	.catch( function( error) {
+		// Notice this '.catch()' is chained onto the end of the '.then()'
+		alert( "Unable to connect to GitHub.");
+	});    
 }
 
 
