@@ -3,6 +3,9 @@
 // Create a reference to the container for 'Issues'
 var issueContainerEl = document.querySelector( "#issues-container" );
 
+// Create a reference to the container for 'Warnings'
+var limitWarningEl = document.querySelector( "#limit-warning" );
+
 ////////////////////////////////////////////////////////////////////////////////
 // Function to take a repository name and assemble its"issues".
 var getRepoIssues = function( repo ) {
@@ -13,6 +16,11 @@ var getRepoIssues = function( repo ) {
         if( response.ok )   {
             response.json().then( function( data ) {
                 displayIssues( data );
+
+                // Warn the user if there are more than 30 issues.
+                if( response.headers.get( "Link" ) ) {
+                    displayWarning( repo );
+                }
             });
         }
         else {
@@ -67,4 +75,22 @@ var displayIssues = function( issues ) {
     }
 }
 
-getRepoIssues( "CaptainRich/workday-scheduler" );
+
+////////////////////////////////////////////////////////////////////////////
+// Function to warn users the 'repo' has more than 30 issues
+var displayWarning = function( repo ) {
+
+    // Add informative test
+    limitWarningEl.textContent = "To see more than 30 issues, visit: ";
+
+    // Create the link reference
+    var linkEl = document.createElement( "a" );
+    linkEl.textContent = "See More Issues on GitHub.com";
+    linkEl.setAttribute( "href", "https://github.com/" + repo + "/issues" );
+    linkEl.setAttribute( "target", "_blank" );         // load on a new page
+
+    // Append the warning to the HTML container
+    limitWarningEl.appendChild( linkEl );
+}
+
+getRepoIssues( "facebook/react" );
