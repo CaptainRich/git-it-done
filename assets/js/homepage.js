@@ -8,6 +8,9 @@ var nameInputEl = document.querySelector( "#username" );
 var repoContainerEl = document.querySelector( "#repos-container" );
 var repoSearchTerm  = document.querySelector( "#repo-search-term" );
 
+// Variables for the 'language buttons'
+var languageButtonsEl = document.querySelector( "#language-buttons" );
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 var getUserRepos = function ( user ) {
@@ -94,6 +97,23 @@ var displayRepos = function( repos, searchTerm ) {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
+// Function to search GitHub based on language features.
+var getFeaturedRepos = function( language ) {
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+
+    fetch( apiUrl ).then( function( response ) {
+        if( response.ok ) {
+            response.json().then(function(data) {
+                displayRepos( data.items, language );
+            })
+        }
+        else {
+            alert( "Error: " + response.statusText );
+        }
+    });
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
 // Define the event handlers needed.
 
 // The event handler for the form submit button
@@ -113,8 +133,27 @@ var formSubmitHandler = function( event ) {
     console.log( event );
 }
 
+// The event handler for the language buttons
+var buttonClickHandler = function( event ) {
+
+    // Determine which button was clicked from the button data attributes
+    var language = event.target.getAttribute( "data-language" );
+    
+    // Invoke the API to return the requested language 'repos'
+    getFeaturedRepos( language );
+
+    // Clear out any earlier data.  The container is actually cleared before any new
+    // data is displayed because 'getFeaturedRepos' runs asynchronously and will take
+    // longer to finish.
+    repoContainerEl.textContent = "";
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Define the event listeners needed.
 
+// Event listener for the GitHub user name.
 userFormEl.addEventListener( "submit", formSubmitHandler );
+
+// Event listener for the language buttons.
+languageButtonsEl.addEventListener( "click", buttonClickHandler );
