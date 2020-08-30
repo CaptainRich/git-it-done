@@ -6,6 +6,27 @@ var issueContainerEl = document.querySelector( "#issues-container" );
 // Create a reference to the container for 'Warnings'
 var limitWarningEl = document.querySelector( "#limit-warning" );
 
+// Create a reference to the 'repo name' for display
+var repoNameEl = document.querySelector( "#repo-name" );
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Function to extract the 'repo' name from the query string
+var getRepoName = function() {
+
+    var queryString = document.location.search;   // get the query string
+    var repoName = queryString.split("=")[1];     // split at the '=', get the 2nd half
+
+    // Only try to show the 'repo issues' if we have a 'repo name'
+    if (repoName) {
+        getRepoIssues(repoName);                  // show the issues
+        repoNameEl.textContent = repoName;        // put the 'repo' name at the top of the page
+    }
+    else {
+        document.location.replace( "./index.html" );   // otherwise go back to the main page
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Function to take a repository name and assemble its"issues".
 var getRepoIssues = function( repo ) {
@@ -24,7 +45,8 @@ var getRepoIssues = function( repo ) {
             });
         }
         else {
-            alert( "There was a problem with your request." );
+            // If the request was not successful, return to the home page.
+            document.location.replace( "./index.html" );   
         }
     });
 };
@@ -87,10 +109,10 @@ var displayWarning = function( repo ) {
     var linkEl = document.createElement( "a" );
     linkEl.textContent = "See More Issues on GitHub.com";
     linkEl.setAttribute( "href", "https://github.com/" + repo + "/issues" );
-    linkEl.setAttribute( "target", "_blank" );         // load on a new page
+    linkEl.setAttribute( "target", "_blank" );         // load on a new page for GitHub display.
 
     // Append the warning to the HTML container
     limitWarningEl.appendChild( linkEl );
 }
 
-getRepoIssues( "facebook/react" );
+getRepoName();
