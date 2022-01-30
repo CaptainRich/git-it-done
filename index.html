@@ -12,8 +12,8 @@
 </head>
 
 <body class="flex-column min-100-vh">
-  <header class="hero">
-    <h1 class="app-title"><i class="fab fa-github"></i> Git it Done!</h1>
+  <header class="hero ">
+    <h1 class="app-title"><i class="fab fa-github"></i> Git Information</h1>
     <p>Search for a GitHub user or click on a language to see a list of repositories and how many open issues they have!
     </p>
   </header>
@@ -29,19 +29,22 @@
         <form id="user-form" class="card-body">
           <label class="form-label" for="username">Username</label>
           <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-          <button type="submit" class="btn">Get User</button>
+          <button type="submit" class="btn">Get User Info</button>
         </form>
       </div>
 
       <!-- Setup the 'search' buttons -->
       <div class="card">
-        <h3 class="card-header text-uppercase">Search By Topic</h3>
+        <h3 class="card-header text-uppercase">Search By Coding Language</h3>
 
         <div class="card-body" id="language-buttons">
           <button class="btn" type="button" data-language="JavaScript">JavaScript</button>
           <button class="btn" type="button" data-language="CSS">CSS</button>
           <button class="btn" type="button" data-language="HTML">HTML</button>
-
+          <button class="btn" type="button" data-language="JAVA">JAVA</button>
+          <button class="btn" type="button" data-language="C++">C++</button>
+          <button class="btn" type="button" data-language="C&#x23;">C#</button>
+          <button class="btn" type="button" data-language="FORTRAN">FORTRAN</button>
         </div>
       </div>
     </div>
@@ -57,7 +60,7 @@
 
   </main>
 
-  <!-- Include the JavaScript file -->
+  <!-- Include the main JavaScript file -->
   <script src="./assets/js/homepage.js"></script>
 </body>
 

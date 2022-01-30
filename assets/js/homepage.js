@@ -19,7 +19,8 @@ var getUserRepos = function ( user ) {
     var apiUrl = "https://api.github.com/users/" + user + "/repos";
 
     // Make the request.
-    var response = fetch(apiUrl).then(function (response) {
+    var response = fetch(apiUrl)
+    .then(function (response) {
         if( response.ok ) {
             response.json().then(function (data) {
                 displayRepos( data, user );
@@ -99,6 +100,7 @@ var displayRepos = function( repos, searchTerm ) {
 ////////////////////////////////////////////////////////////////////////////////////////
 // Function to search GitHub based on language features.
 var getFeaturedRepos = function( language ) {
+    console.log( language );
     var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
 
     fetch( apiUrl ).then( function( response ) {

@@ -3,7 +3,7 @@
   --secondary: #9caea9;
   --tertiary: #788585;
   --light-dark: #6f6866;
-  --dark: #38302e;
+  --dark: #5c5250;
   --border-radius: .3rem;
 }
 
@@ -93,13 +93,14 @@ p {
 }
 
 .hero {
-  padding: 3% 4%;
+  padding: 10px 20px 5px 20px;
   background-color: var(--dark);
   color: var(--primary);
 }
 
 .hero p {
   max-width: 75%;
+  line-height: 0.75rem;
 }
 
 .app-title {
@@ -185,6 +186,7 @@ p {
 }
 
 /* HEIGHT / WIDTH UTILS */
+
 .min-100-vh {
   min-height: 100vh;
 }
