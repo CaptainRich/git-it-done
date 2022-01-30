@@ -1,6 +1,6 @@
 // Javascript file for the HomePage
 
-// Variables for the user input form.
+// Variables for the user input form, based on 'id' values.
 var userFormEl  = document.querySelector( "#user-form" );
 var nameInputEl = document.querySelector( "#username" );
 
@@ -27,7 +27,8 @@ var getUserRepos = function ( user ) {
             });
         }
         else {
-            alert( "Error: " + response.statusText );
+            // The server received the request, but there was some issue (error).
+      alert( "Error: " + response.status + response.statusText );
         }
 
     })
@@ -41,8 +42,9 @@ var getUserRepos = function ( user ) {
 ////////////////////////////////////////////////////////////////////////////////////////
 // Define the function to the 'repo' information
 var displayRepos = function( repos, searchTerm ) {
+    // 'searchTerm' is the Username we searched for
 
-    // Check if the API returned any 'repos'
+    // Check if the API returned any 'repos' for this user
     if( repos.length === 0 ) {
         repoContainerEl.textContent = "No repositories found for this user." ;
         return;
@@ -50,7 +52,9 @@ var displayRepos = function( repos, searchTerm ) {
 
     // Clear out any earlier displayed data
     repoContainerEl.textContent = "";
-    repoSearchTerm.textContent  = searchTerm;
+
+    // Put up a title for the list of repos found
+    repoSearchTerm.textContent  = searchTerm + " ( " + repos.length + " repos found )";      
 
     // Display the repository data on the page.
     // Loop over the discovered 'repos'.
@@ -61,7 +65,7 @@ var displayRepos = function( repos, searchTerm ) {
         // Create the container for this 'repo'.
         var repoEl = document.createElement( "a" );
         repoEl.classList = "list-item flex-row justify-space-between align-center";
-        // Link the next HTML page and sends it the selected 'repo' name.
+        // Link to the next HTML page and send it the selected 'repo' name.
         repoEl.setAttribute( "href", "./single-repo.html?repo=" + repoName );   
 
         // Create a span element to hold the 'repo' name
@@ -98,7 +102,7 @@ var displayRepos = function( repos, searchTerm ) {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// Function to search GitHub based on language features.
+// Function to search GitHub for repos based on language features.
 var getFeaturedRepos = function( language ) {
     console.log( language );
     var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
@@ -116,11 +120,16 @@ var getFeaturedRepos = function( language ) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 // Define the event handlers needed.
 
+
+///////////////////////////////////////////////////////////////////////////////////////
 // The event handler for the form submit button
 var formSubmitHandler = function( event ) {
-    event.preventDefault();
+    event.preventDefault();       // don't perform default action for the event
 
     // Get the requested user name from the form
     var username = nameInputEl.value.trim();
@@ -135,6 +144,8 @@ var formSubmitHandler = function( event ) {
     console.log( event );
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////
 // The event handler for the language buttons
 var buttonClickHandler = function( event ) {
 
@@ -152,10 +163,13 @@ var buttonClickHandler = function( event ) {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 // Define the event listeners needed.
 
 // Event listener for the GitHub user name.
 userFormEl.addEventListener( "submit", formSubmitHandler );
 
-// Event listener for the language buttons.
+// Event listener for the language selection buttons.
 languageButtonsEl.addEventListener( "click", buttonClickHandler );
