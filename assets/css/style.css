@@ -1,9 +1,9 @@
 :root {
-  --primary: #ccdad1;
+  --primary: #ffecccff;       /* blanched almond */
   --secondary: #9caea9;
   --tertiary: #788585;
-  --light-dark: #6f6866;
-  --dark: #5c5250;
+  --light-dark: #807d7c;
+  --dark: #5f1c25ff;           /* wine */
   --border-radius: .3rem;
 }
 
@@ -48,13 +48,13 @@ p {
   padding: 6px 5px;
   width: 100%;
   display: block;
-  margin: 5px 0;
+  margin: 7px 0;
   border-radius: var(--border-radius);
   color: var(--primary);
   border: none;
   outline: none;
   background-color: var(--light-dark);
-  box-shadow: 3px 3px var(--dark);
+  box-shadow: 4px 4px var(--dark);
   transform: translate(-1px, -1px);
 }
 
@@ -62,7 +62,7 @@ p {
   color: var(--primary);
   background-color: var(--tertiary);
   transform: translate(0, 0);
-  box-shadow: 2px 2px var(--dark);
+  box-shadow: 4px 4px var(--dark);
 }
 
 .btn-inline {
@@ -89,7 +89,7 @@ p {
   color: var(--primary);
   background-color: var(--tertiary);
   transform: translate(0, 0);
-  box-shadow: 2px 2px var(--dark);
+  box-shadow: 4px 4px var(--dark);
 }
 
 .hero {

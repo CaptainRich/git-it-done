@@ -15,8 +15,8 @@ var languageButtonsEl = document.querySelector( "#language-buttons" );
 ////////////////////////////////////////////////////////////////////////////////////////
 var getUserRepos = function ( user ) {
 
-    // Format the GitHub API URL.
-    var apiUrl = "https://api.github.com/users/" + user + "/repos";
+    // Format the GitHub API URL.  The 'per_page' item overrides the default of 30.
+    var apiUrl = "https://api.github.com/users/" + user + "/repos?per_page=100";
 
     // Make the request.
     var response = fetch(apiUrl)
