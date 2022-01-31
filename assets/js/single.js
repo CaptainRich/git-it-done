@@ -30,7 +30,7 @@ var getRepoName = function() {
 ////////////////////////////////////////////////////////////////////////////////
 // Function to take a repository name and assemble its"issues".
 var getRepoIssues = function( repo ) {
-    var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
+    var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc?per_page=100";
 
     fetch( apiUrl ).then( function( response ) {
         // Request was successful
@@ -38,7 +38,7 @@ var getRepoIssues = function( repo ) {
             response.json().then( function( data ) {
                 displayIssues( data );
 
-                // Warn the user if there are more than 30 issues.
+                //If there are more than 30 issues (the 'Link' exists), warn the user.  
                 if( response.headers.get( "Link" ) ) {
                     displayWarning( repo );
                 }
@@ -46,6 +46,7 @@ var getRepoIssues = function( repo ) {
         }
         else {
             // If the request was not successful, return to the home page.
+            alert( "Error: " + response.status + " - " + response.statusText );
             document.location.replace( "./index.html" );   
         }
     });
@@ -56,7 +57,7 @@ var getRepoIssues = function( repo ) {
 // Function to display the repo issues
 var displayIssues = function( issues ) {
 
-    // If there are no open 'issues' in this 'repo', warn the user
+    // If there are no open 'issues' in this 'repo', inform the user
     if( issues.length === 0 ) {
         issueContainerEl.textContent = "This repository has no open issues.";
         return;

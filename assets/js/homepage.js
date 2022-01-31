@@ -28,7 +28,7 @@ var getUserRepos = function ( user ) {
         }
         else {
             // The server received the request, but there was some issue (error).
-      alert( "Error: " + response.status + " - " + response.statusText );
+            alert( "Error: " + response.status + " - " + response.statusText );
         }
 
     })
