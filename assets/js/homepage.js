@@ -105,7 +105,7 @@ var displayRepos = function( repos, searchTerm ) {
 // Function to search GitHub for repos based on language features.
 var getFeaturedRepos = function( language ) {
     console.log( language );
-    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues&per_page=100";
 
     fetch( apiUrl ).then( function( response ) {
         if( response.ok ) {
