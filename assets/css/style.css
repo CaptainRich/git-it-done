@@ -81,7 +81,7 @@ p {
   border: none;
   outline: none;
   background-color: var(--light-dark);
-  box-shadow: 3px 3px var(--secondary);
+  box-shadow: 3px 3px var(--primary);
   transform: translate(-1px, -1px);
   display: inline-block;
   width: auto;
@@ -93,9 +93,9 @@ p {
 
  .btn-back:hover {
   color: var(--primary);
-  background-color: var(--tertiary);
+  background-color: var(--light-dark);
   transform: translate(0, 0);
-  box-shadow: 4px 4px var(--dark);
+  box-shadow: 4px 4px var(--secondary);
 }
 
 .hero {

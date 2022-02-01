@@ -11,7 +11,7 @@ var repoNameEl = document.querySelector( "#repo-name" );
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Function to extract the 'repo' name from the query string
+// Function to extract the 'repo' name from the query string, the URL passed from the main page.
 var getRepoName = function() {
 
     var queryString = document.location.search;   // get the query string

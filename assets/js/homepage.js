@@ -62,7 +62,7 @@ var displayRepos = function( repos, searchTerm ) {
         // Format the 'repo' name
         var repoName = repos[i].owner.login + "/" + repos[i].name;
 
-        // Create the container for this 'repo'.
+        // Create the container for this 'repo'.  Note this is an HTML "anchor"
         var repoEl = document.createElement( "a" );
         repoEl.classList = "list-item flex-row justify-space-between align-center";
         // Link to the next HTML page and send it the selected 'repo' name.
