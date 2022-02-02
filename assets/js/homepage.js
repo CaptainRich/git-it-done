@@ -105,7 +105,8 @@ var displayRepos = function( repos, searchTerm ) {
 // Function to search GitHub for repos based on language features.
 var getFeaturedRepos = function( language ) {
     console.log( language );
-    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues&per_page=100";
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + 
+                   "+is:featured&sort=help-wanted-issues&per_page=100";
 
     fetch( apiUrl ).then( function( response ) {
         if( response.ok ) {
@@ -153,7 +154,8 @@ var buttonClickHandler = function( event ) {
     var language = event.target.getAttribute( "data-language" );
     
     // Invoke the API to return the requested language 'repos'
-    getFeaturedRepos( language );
+    if( language )
+        getFeaturedRepos( language );
 
     // Clear out any earlier data.  The container is actually cleared before any new
     // data is displayed because 'getFeaturedRepos' runs asynchronously and will take
