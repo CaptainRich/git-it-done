@@ -7,6 +7,7 @@ var nameInputEl = document.querySelector( "#username" );
 // Variables for the display container area of the page.
 var repoContainerEl = document.querySelector( "#repos-container" );
 var repoSearchTerm  = document.querySelector( "#repo-search-term" );
+var wrapperSize     = document.getElementById( "wrapperSize");
 
 // Variables for the 'language buttons'
 var languageButtonsEl = document.querySelector( "#language-buttons" );
@@ -53,6 +54,8 @@ var displayRepos = function( repos, searchTerm ) {
     // Clear out any earlier displayed data
     repoContainerEl.textContent = "";
 
+    // wrapperSize.classList.remove("wrapper");
+
     // Put up a title for the list of repos found
     repoSearchTerm.textContent  = searchTerm + " ( " + repos.length + " repos found )";      
 
@@ -95,6 +98,9 @@ var displayRepos = function( repos, searchTerm ) {
         // Append the container to the DOM
         repoContainerEl.appendChild( repoEl );
     }
+
+    // Put the wrapper class back on the page
+    // wrapperSize.classList.add( "wrapper" );
 
     console.log( repos );
     console.log( searchTerm );

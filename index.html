@@ -12,53 +12,60 @@
 </head>
 
 <body class="flex-column min-100-vh">
-  <header class="hero ">
-    <h1 class="app-title"><i class="fab fa-github"></i> Git Information</h1>
-    <p>Search for a GitHub user or click on a language to see a list of repositories and how many open issues exist!
-    </p>
-  </header>
-
-
-  <main class="flex-row justify-space-between">
- 
-    <div class="col-12 col-md-4">
-      <!-- Create the form to acquire the user's GitHub name -->
-      <div class="card">
-        <h3 class="card-header text-uppercase">Search By User</h3>
-    
-        <form id="user-form" class="card-body">
-          <label class="form-label" for="username">Username</label>
-          <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-          <button type="submit" class="btn">Get User's Repositories</button>
-        </form>
-      </div>
-
-      <!-- Setup the 'search' buttons -->
-      <div class="card">
-        <h3 class="card-header text-uppercase">Search By Coding Language</h3>
-
-        <div class="card-body" id="language-buttons">
-          <button class="btn" type="button" data-language="CSS">CSS</button>
-          <button class="btn" type="button" data-language="HTML">HTML</button>
-          <button class="btn" type="button" data-language="JavaScript">JavaScript</button>
-          <button class="btn" type="button" data-language="JAVA">JAVA</button>
-          <button class="btn" type="button" data-language="C++">C++</button>
-          <button class="btn" type="button" data-language="C&#x23;">C#</button>
-          <button class="btn" type="button" data-language="FORTRAN">FORTRAN</button>
+  <div class="wrapper" id="wrapperSize">
+    <header class="hero ">
+      <h1 class="app-title"><i class="fab fa-github"></i> Git Information</h1>
+      <p>Search for a GitHub user or click on a language to see a list of repositories and how many open issues exist!
+      </p>
+    </header>
+  
+  
+    <main class="flex-row justify-space-between">
+  
+      <div class="col-12 col-md-4">
+        <!-- Create the form to acquire the user's GitHub name -->
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search By User</h3>
+  
+          <form id="user-form" class="card-body">
+            <label class="form-label" for="username">Username</label>
+            <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">Get User's Repositories</button>
+          </form>
+        </div>
+  
+        <!-- Setup the 'search' buttons -->
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search By Coding Language</h3>
+  
+          <div class="card-body" id="language-buttons">
+            <button class="btn" type="button" data-language="CSS">CSS</button>
+            <button class="btn" type="button" data-language="HTML">HTML</button>
+            <button class="btn" type="button" data-language="JavaScript">JavaScript</button>
+            <button class="btn" type="button" data-language="JAVA">JAVA</button>
+            <button class="btn" type="button" data-language="C++">C++</button>
+            <button class="btn" type="button" data-language="C&#x23;">C#</button>
+            <button class="btn" type="button" data-language="FORTRAN">FORTRAN</button>
+          </div>
         </div>
       </div>
-    </div>
-
-
-    <!-- Setup the area where we display the 'repo' data. -->
-    <div class="col-12 col-md-8">
-      <h2 class="subtitle">Showing Repositories for: <span id="repo-search-term"></span></h2>
-      <div id="repos-container" class="list-group">
-
+  
+  
+      <!-- Setup the area where we display the 'repo' data. -->
+      <div class="col-12 col-md-8">
+        <h2 class="subtitle">Showing Repositories for: <span id="repo-search-term"></span></h2>
+        <div id="repos-container" class="list-group">
+  
+        </div>
       </div>
-    </div>
+  
+    </main>
+  </div>
 
-  </main>
+  <footer>
+    &copy; 2022 by R. Ay
+  </footer>
+
 
   <!-- Include the main JavaScript file -->
   <script src="./assets/js/homepage.js"></script>
