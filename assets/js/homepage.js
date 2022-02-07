@@ -99,11 +99,27 @@ var displayRepos = function( repos, searchTerm ) {
         repoContainerEl.appendChild( repoEl );
     }
 
-    // Put the wrapper class back on the page
-    // wrapperSize.classList.add( "wrapper" );
+    // Update the page by removing and replacing the footer, after a delay.
+    setTimeout( moveFooter, 5000 );
+
 
     console.log( repos );
     console.log( searchTerm );
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Function to remove the "wrapper" class, then re-add it.  This is so when the viewport size
+// changes, the footer remains at the bottom.  This function is called by "setInterval",
+// after a 2 second delay - to give the GitHub server time to transmit the 
+// requested information.
+
+var moveFooter = function () {
+
+    // Remove the wrapper class, which removes the footer.
+    wrapperSize.classList.remove("wrapper");
+
+    // Put the wrapper class back on the page
+    //wrapperSize.classList.add( "wrapper" );
 }
 
 
