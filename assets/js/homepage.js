@@ -54,7 +54,7 @@ var displayRepos = function( repos, searchTerm ) {
     // Clear out any earlier displayed data
     repoContainerEl.textContent = "";
 
-    // wrapperSize.classList.remove("wrapper");
+    //wrapperSize.classList.remove("wrapper");
 
     // Put up a title for the list of repos found
     repoSearchTerm.textContent  = searchTerm + " ( " + repos.length + " repos found )";      
@@ -116,7 +116,7 @@ var displayRepos = function( repos, searchTerm ) {
 var moveFooter = function () {
 
     // Remove the wrapper class, which removes the footer.
-    wrapperSize.classList.remove("wrapper");
+    //wrapperSize.classList.remove("wrapper");
 
     // Put the wrapper class back on the page
     //wrapperSize.classList.add( "wrapper" );
